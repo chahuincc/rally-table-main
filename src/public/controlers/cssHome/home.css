@@ -1,0 +1,193 @@
+
+.docHome{
+    background: rgba(255, 255, 255, 0.205);
+    height: 100vh;
+}
+
+.head {
+    margin: 0;
+    padding: 0.5rem;
+    height: 35vh ;
+    background: rgb(255, 255, 255);
+}
+
+.styleTitle{
+    width: 100%;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+}
+.styleTitle P{
+    margin: 0;
+    text-align: center;
+    font-size: 3rem;
+    /* font-weight: 800; */
+    font-family: 'Bebas Neue', cursive;
+}
+
+.tag{
+    width: auto;
+    font-weight: 600;
+    font-family: 'IBM Plex Sans', sans-serif;
+    border: 1px rgba(235, 235, 235, 0.7) solid;
+    /* margin-top: 5px; */
+    padding: .5rem;
+    margin: 0 0 .3rem 0;
+}
+.infoStyle{
+    height: auto;
+    padding: .5rem;
+    width: auto;
+    border: 1px rgba(235, 235, 235, 0.7) solid;
+    margin: 0 0 .3rem 0;
+    font-weight: 200;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.dateLiveStatus{
+
+    padding: .5rem;
+    border: 1px rgba(235, 235, 235, 0.7) solid;
+    margin: 0 0 .3rem 0;
+
+    display: flex;
+    align-content: space-around;
+    justify-content: space-between;
+    /* align-items: stretch; */
+}
+/* 576  768  992 */
+.date{
+    font-weight: 600;
+    font-family: 'IBM Plex Sans', sans-serif;
+    /* align-self: flex-start; */
+}
+
+.status{
+    /* align-items: flex-end; */
+    display: flex;
+    height: auto;
+}
+
+.liveWord{
+padding-top: .15rem;
+}
+
+.styleLive{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin: 0 auto;
+}
+.styleLive{
+   width: .7rem;
+   height: .7rem;
+   margin: 0rem 1rem;
+   border-radius: 50%;
+   background-color: rgb(252, 0, 0); 
+   animation: loader-animation .6s infinite alternate; 
+}
+
+@keyframes loader-animation {
+    to {
+        opacity: .1;
+        /* transform: translate3d(0, -1rem, 0); */
+        transform: translateX(0, -1rem, 0);
+    }
+}
+
+.styleLive > div:nth-child(2){
+    animation-delay: .2s;
+}
+.styleLive > div:nth-child(3){
+    animation-delay: .4s;
+}
+
+/* ---------------------------------- */
+.buttonSee{
+    margin: 0 auto;
+    border: 1px rgba(235, 235, 235, 0.7) solid;
+    padding: .5rem;
+    border-end-end-radius: 50%;
+    border-end-start-radius: 50%;
+    width:3rem;
+    height: 2rem;
+    box-shadow: 0px 1px 10px #e4e4e4;
+    transition: all 400ms ease-out;
+}
+/* ---------------------------------- */
+.svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.container_table_main{
+    margin: 0;
+    margin-top: 3rem;
+    padding: 0.5rem;
+    height: 35vh ;
+    background: rgb(255, 255, 255);
+}
+.contTable{
+    padding: 0rem .5rem .5rem .5rem;
+    background: rgb(255, 255, 255);
+    border: 1px rgba(235, 235, 235, 0.7) solid;
+    box-shadow: 0px 1px 10px #e4e4e4;
+}
+.tableContainer {
+    width: 100%;
+}
+
+tr {
+    height: 2.5rem;
+    /* border:1px blue solid; */
+    /* background:  rgba(251, 251, 251, 0.8) ; */
+    border-radius: 50px;
+}
+.stylPts{
+    font-weight: 600;
+}
+th{
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1.2rem;
+    text-align: start;
+    padding-left: .2rem;
+}
+td{
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(214, 214, 214, 0.534);    
+    text-align: start;
+    padding-left: .2rem;
+}
+
+
+/* ---------------------------- */
+.card{
+    
+    height: 15rem;
+    width: 22rem;
+    border: 1px solid rgb(226, 226, 226);
+    margin: 10px;
+    border-radius: 1%;
+    box-shadow: 0px 0px 5px 1px rgba(235, 235, 235, 0.7) ;
+}
+.card h2{
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    /* border-bottom: 1px solid rgba(214, 214, 214, 0.534);     */
+    text-align: center;
+    /* padding-left: .2rem; */
+}
+.imgs{
+    display: flex;
+    align-content: space-around;
+}
+img {
+    height: 136px;
+    width: auto;
+    border-radius: 1%;
+}
+.contGaleria{
+    overflow-y: scroll;
+}

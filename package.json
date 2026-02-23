@@ -1,0 +1,35 @@
+{
+  "name": "livedlc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "postinstall": "npm run webpack",
+    "dev": "nodemon index.js",
+    "webpack": "webpack --mode development"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parse": "^0.1.0",
+    "dotenv": "^17.3.1",
+    "express": "^4.17.1",
+    "materialize-css": "^1.0.0-rc.2",
+    "mongodb": "^7.1.0",
+    "mongoose": "^9.2.1",
+    "morgan": "^1.10.0",
+    "socket.io": "^4.0.1",
+    "webpack-dev-middleware": "^4.1.0"
+  },
+  "devDependencies": {
+    "css-loader": "^5.2.4",
+    "html-loader": "^2.1.2",
+    "nodemon": "^2.0.7",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.35.1",
+    "webpack-cli": "^4.6.0"
+  }
+}

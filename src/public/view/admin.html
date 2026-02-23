@@ -1,0 +1,50 @@
+<section>
+        <div class="mainHandleData">
+            <h1 class="titleAdmin">Data Manager</h1>
+            <div class="containerAdmin">
+                <div class="containerHandleData">
+                    <div class="rowActiveLive">
+                        <span class="label-button">
+                            Active-Live
+                        </span>
+                        <div id="buttonActiveLive" class="containerButton">
+                            <div class="toggle-btn" onclick="this.classList.toggle('active')">
+                                <div class="inner-circle"></div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rowForInputs">
+                        <label for="nombre">
+                            Nombre:
+                            <input  id="name" type="text" name="nombre" placeholder="Nombre" value=""/>
+                        </label>
+                        <label for="number">
+                            Puntaje:
+                            <input  id="number" type="number" name="number" placeholder="Puntaje" />
+                        </label>
+                        <button type="button" id="btnClickSend"> update Data </button>
+                    </div>
+                </div>
+                <div class="seeTableForEdit">
+                    <table class="tableContainer">
+                        <thead>
+                          <tr class="tr">
+                            <th scope="col">#</th>
+                            <th scope="col">NOMBRE</th>
+                            <th scope="col">PUNTAJE</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <!-- <th scope="col">Handle</th> -->
+                          </tr>
+                        </thead>
+                        <tbody id = "viewTable">
+                         
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+       
+       
+        <!-- <input type="submit" value="send" id="btnClick" /> -->
+</section> 
