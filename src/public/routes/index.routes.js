@@ -1,8 +1,14 @@
-// import Adimn from '../controlers/admin.controlers'
 import { Home, Admin } from '../controlers'
+import Pusher from 'pusher-js';
+
+const PUSHER_KEY = 'tu_key';
+const PUSHER_CLUSTER = 'tu_cluster';
+
+const pusher = new Pusher(PUSHER_KEY, {
+    cluster: PUSHER_CLUSTER
+});
 
 const viewAdminHtml = document.getElementById('admin')
-const socket = io()
 
 const router = (linkRoute) => {
 
@@ -10,11 +16,11 @@ const router = (linkRoute) => {
 
     switch (linkRoute) {
         case '#/admin':
-            return viewAdminHtml.appendChild(Admin(socket));
+            return viewAdminHtml.appendChild(Admin(pusher));
             break;
 
         case '#/':
-            return viewAdminHtml.appendChild(Home(socket));
+            return viewAdminHtml.appendChild(Home(pusher));
             break;
         default:
             console.log('not found 404 error')

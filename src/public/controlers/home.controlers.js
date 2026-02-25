@@ -6,7 +6,7 @@ import './cssHome/home.css'
 import './cssHome/screen576.css'
 import './cssHome/screen768.css'
 import './cssHome/screen992.css'
-const Home = (socket) => {
+const Home = (pusher) => {
 
     const divElement = document.createElement('div')
     divElement.innerHTML = htmlHome
@@ -18,6 +18,8 @@ const Home = (socket) => {
     const contLiveState = divElement.querySelector('#contLiveState')
     let activeButton = true
     let ButttonActiveLive = false
+
+    const channel = pusher.subscribe('rally-channel');
 
     const stateLive = async () => {
         try {
@@ -49,8 +51,7 @@ const Home = (socket) => {
 
     stateLive()
 
-    socket.on('activeLive', (dt) => {
-        let data = JSON.parse(JSON.stringify(dt));
+    channel.bind('activeLive', (data) => {
         updateLiveUI(data);
     })
 
@@ -81,9 +82,8 @@ const Home = (socket) => {
     // DAte handle
     dateNow.innerHTML = `${getDateNow()}`
 
-    // socket handle
-    socket.on('message', (dt) => {
-        let data = JSON.parse(JSON.stringify(dt));
+    // pusher handle
+    channel.bind('message', (data) => {
         tableView.innerHTML = ''
         paintViewHtml(data)
     })

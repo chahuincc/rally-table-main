@@ -3,7 +3,7 @@ import axios from 'axios'
 import ordenArray from './funAdmin/ordenarArr'
 import "./cssAdmin/admin.css"
 
-const Admin = (socket) => {
+const Admin = (pusher) => {
 
     let initialValue = {
         numCarrera: 0,
@@ -44,7 +44,7 @@ const Admin = (socket) => {
 
         try {
             await axios.post('/stateData', { stateLive: dataActiveLive });
-            socket.emit('activeLive', dataActiveLive)
+            await axios.post('/trigger-active-live', { active: dataActiveLive });
         } catch (err) {
             console.error("Error updating live state:", err);
         }
@@ -85,7 +85,7 @@ const Admin = (socket) => {
                 puntaje: dataCpy.puntaje
             })
                 .then(res => {
-                    socket.emit('message')
+                    axios.post('/trigger-message')
                     valueNumber.value = 0
                     valueName.value = ''
                 })
