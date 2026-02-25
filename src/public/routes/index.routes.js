@@ -1,8 +1,8 @@
 import { Home, Admin } from '../controlers'
 import Pusher from 'pusher-js';
 
-const PUSHER_KEY = 'tu_key';
-const PUSHER_CLUSTER = 'tu_cluster';
+const PUSHER_KEY = '20cd25de640089f25e28';
+const PUSHER_CLUSTER = 'sa1';
 
 const pusher = new Pusher(PUSHER_KEY, {
     cluster: PUSHER_CLUSTER
