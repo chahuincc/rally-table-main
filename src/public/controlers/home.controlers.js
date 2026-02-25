@@ -6,8 +6,8 @@ import './cssHome/home.css'
 import './cssHome/screen576.css'
 import './cssHome/screen768.css'
 import './cssHome/screen992.css'
-const Home = (socket)=>{
-    
+const Home = (socket) => {
+
     const divElement = document.createElement('div')
     divElement.innerHTML = htmlHome
 
@@ -19,16 +19,21 @@ const Home = (socket)=>{
     let activeButton = true
     let ButttonActiveLive = false
 
-    const stateLive = async()=>{
-        if(!ButttonActiveLive){
-            contLiveState.innerHTML = '<span>Live No Active</span>'
+    const stateLive = async () => {
+        try {
+            const resp = await axios.get('/stateLive');
+            const data = JSON.parse(JSON.stringify(resp.data));
+            if (data && data.length > 0) {
+                ButttonActiveLive = data[0].stateLive;
+                updateLiveUI(ButttonActiveLive);
+            }
+        } catch (err) {
+            console.error("Error fetching initial live state:", err);
         }
     }
-    stateLive()
 
-    socket.on('activeLive', (dt) =>{
-        let data = JSON.parse( JSON.stringify( dt ) );
-        if(data){
+    function updateLiveUI(isActive) {
+        if (isActive) {
             contLiveState.innerHTML = `<div class="liveWord">
             <span>live<span>
           </div> 
@@ -37,16 +42,23 @@ const Home = (socket)=>{
               <div></div>
               <div></div>
             </div>`
-        }else{
+        } else {
             contLiveState.innerHTML = '<span>Live No Active</span>'
         }
+    }
+
+    stateLive()
+
+    socket.on('activeLive', (dt) => {
+        let data = JSON.parse(JSON.stringify(dt));
+        updateLiveUI(data);
     })
 
-    buttonViewTable.addEventListener('click', (e)=>{
+    buttonViewTable.addEventListener('click', (e) => {
 
-        buttonActivTable.style.transform  = "rotate(0deg)"
-        if(activeButton){
-            buttonActivTable.style.transform  ="rotate(180deg) translate(0px, 50px)"
+        buttonActivTable.style.transform = "rotate(0deg)"
+        if (activeButton) {
+            buttonActivTable.style.transform = "rotate(180deg) translate(0px, 50px)"
             sendGetRequest()
             activeButton = false
         } else {
@@ -59,7 +71,7 @@ const Home = (socket)=>{
         let dataNowUp = {}
         try {
             const resp = await axios.get('/getData');
-            dataNowUp = JSON.parse( JSON.stringify( resp.data ) );
+            dataNowUp = JSON.parse(JSON.stringify(resp.data));
             paintViewHtml(dataNowUp)
         } catch (err) {
             console.error(err);
@@ -70,25 +82,25 @@ const Home = (socket)=>{
     dateNow.innerHTML = `${getDateNow()}`
 
     // socket handle
-    socket.on('message', (dt)=>{
-        let data = JSON.parse( JSON.stringify( dt ) );
-        tableView.innerHTML=''
+    socket.on('message', (dt) => {
+        let data = JSON.parse(JSON.stringify(dt));
+        tableView.innerHTML = ''
         paintViewHtml(data)
     })
 
-    function paintViewHtml (dt) {
-            ordenArray(dt)
-            return dt.map((dat, index)=>{
-                return tableView.innerHTML += `
+    function paintViewHtml(dt) {
+        ordenArray(dt)
+        return dt.map((dat, index) => {
+            return tableView.innerHTML += `
                 <tr>
-                    <td>${index+1}</td>
+                    <td>${index + 1}</td>
                     <td>${dat.nombre}</td>
                     <td class="stylPts">${dat.puntaje}</td>
                 </tr>
                 `
-            })
-        }
+        })
+    }
     return divElement;
-} 
+}
 
-export default  Home;
+export default Home;

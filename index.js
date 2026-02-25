@@ -30,21 +30,13 @@ const io = socketIo(server)
 // web socket 
 io.on('connection', async (socket) => {
 
-    socket.on('active', async () => {
-        // console.log('in ACTIVE')
-        const data = await Player.find();
-        socket.broadcast.emit('message', data)
-    })
-
     socket.on('message', async () => {
-        // console.log('in MESSAGE')
         const data = await Player.find();
-        socket.broadcast.emit('message', data)
+        io.emit('message', data)
     })
 
     socket.on('activeLive', async (a) => {
-        // console.log('in ACTIVElIVE')
-        socket.broadcast.emit('activeLive', a)
+        io.emit('activeLive', a)
     })
 
 });

@@ -40,31 +40,6 @@ router.post('/postData', async (req, res) => {
   }
 });
 
-// router.post('/postData', async(req, res) => {
-//     const {nombre, puntaje} = req.body;
-//     const data = new Player({
-//       numCarrera,
-//       nombre,
-//       puntaje  
-//     });
-//     const rta = await data.save();
-//     res.json({status: 'Task Saved'});
-// })
-
-
-
-// router.put('/:id', async (req, res) => {
-//   const { numCarrera, nombre, puntaje } = req.body;
-//   const newData = new Player({
-//     numCarrera,
-//     nombre,
-//     puntaje
-//   });
-//   const rpta = await Player.findOneAndUpdate({ _id: req.params.id }, newData)
-//   res.json({ rpta })
-// })
-
-
 router.put('/:id', async (req, res) => {
   const { numCarrera, nombre, puntaje } = req.body;
   const newData = {
@@ -84,25 +59,20 @@ router.put('/:id', async (req, res) => {
 
 
 router.post('/stateData', async (req, res) => {
+  const { stateLive } = req.body;
 
-  const { stateLive } = req.body
-
-  const dataStateApp = new DataStateApp({
-    stateLive
-  })
-
-  let rta = await dataStateApp.save()
-  if (rta) {
-    res.json({
-      status: 'success'
-    })
-  } else {
-    res.json({
-      status: 'error'
-    })
+  try {
+    // Update the first document found or create it if it doesn't exist (upsert)
+    const rta = await DataStateApp.findOneAndUpdate({}, { stateLive }, { upsert: true, new: true });
+    if (rta) {
+      res.json({ status: 'success', data: rta });
+    } else {
+      res.json({ status: 'error' });
+    }
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
   }
-
-})
+});
 
 
 
